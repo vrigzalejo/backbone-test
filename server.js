@@ -5,6 +5,7 @@ var express = require( 'express' );
 var bodyParser = require( 'body-parser' );
 var mongoose = require( 'mongoose' );
 var app = express();
+var port = 3000;
 mongoose.connect( 'mongodb://localhost/blogroll' );
 var Schema = mongoose.Schema;
 var BlogSchema = new Schema( {
@@ -14,15 +15,15 @@ var BlogSchema = new Schema( {
 } );
 mongoose.model( 'Blog', BlogSchema );
 var Blog = mongoose.model( 'Blog' );
-var blog = new Blog( {
-	author: 'Vrigz',
-	title: 'Vrigz\'s Blog',
-	url: 'http://www.brigidoantazoalejo.space'
-} );
-var port = 3000;
+/*
+ var blog = new Blog( {
+ author: 'Vrigz',
+ title: 'Vrigz\'s Blog',
+ url: 'http://www.brigidoantazoalejo.space'
+ } );
 
-blog.save();
-
+ blog.save();
+ */
 // ROOT
 app.use( express.static( __dirname + '/public' ) );
 
@@ -49,6 +50,20 @@ app.post( '/api/blogs', function( req, res ) {
 	blog.save( function( err, doc ) {
 		res.send( doc );
 	} )
+} );
+
+app.delete( '/api/blogs/:id', function( req, res ) {
+	console.log( 'Received a DELETE request for _id: ' + req.params.id );
+	Blog.remove( { _id: req.params.id }, function( err ) {
+		res.send( { _id: req.params.id } );
+	} );
+} );
+
+app.put( '/api/blogs/:id', function( req, res ) {
+	console.log( 'Received an UPDATE request for _id: ' + req.params.id );
+	Blog.update( { _id: req.params.id }, req.body, function( err ) {
+		res.send( { _id: req.params.id } )
+	} );
 } );
 
 // PORT 3000
