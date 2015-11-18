@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name=description content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Backbone Tutorial Blogroll App</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td><input class="form-control author-input"/></td>
+            <td><input class="form-control title-input"/></td>
+            <td><input class="form-control url-input"/></td>
+            <td>
+                <button class="btn btn-primary add-blog">Add</button>
+            </td>
+        </tr>
+        </thead>
+        <tbody class="blogs-list"></tbody>
+    </table>
+</div>
+
+<!-- jQuery -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<script type="text/template" class="blogs-list-template">
+    <td><span class="author"><%= author %></span></td>
+    <td><span class="title"><%= title %></span></td>
+    <td><span class="url"><%= url %></span></td>
+    <td>
+        <button class="btn btn-warning edit-blog">Edit</button>
+    </td>
+    <td>
+        <button class="btn btn-danger delete-blog">Delete</button>
+    </td>
+</script>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="scripts.js"></script>
+<!-- Bootstrap JavaScript -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+</body>
+</html>
